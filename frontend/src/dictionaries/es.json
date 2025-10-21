@@ -1,0 +1,9 @@
+{
+  "common": {
+    "actions": {
+      "save": "Ahorrar",
+      "cancel": "Cancelar",
+      "delete": "Borrar"
+    }
+  }
+}
