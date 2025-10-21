@@ -21,6 +21,8 @@ import { Requirement } from '../../database/requirement';
 import { useApi } from '../Api';
 import { GetExplorerPositionResult } from '../explorerApi';
 import { Request, useRequest } from '../Request';
+import {i18n} from '@/i18n-config';
+
 
 export interface IdentifiableCache<T> {
     get: (id: string) => T | undefined;
@@ -163,6 +165,9 @@ interface CacheContextType {
 
     imageBypass: number;
     setImageBypass: (v: number) => void;
+
+    locale: string;
+    setLocale: (v: string) => void;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -190,6 +195,7 @@ export function CacheProvider({ children }: { children: ReactNode }) {
     );
     const clubs = useIdentifiableCache<Club>();
     const [imageBypass, setImageBypass] = useState(Date.now());
+    const [locale, setLocale] = useState(i18n.defaultLocale);
 
     const value = {
         isLoading,
@@ -201,6 +207,8 @@ export function CacheProvider({ children }: { children: ReactNode }) {
         clubs,
         imageBypass,
         setImageBypass,
+        locale,
+        setLocale
     };
     return <CacheContext.Provider value={value}>{children}</CacheContext.Provider>;
 }
